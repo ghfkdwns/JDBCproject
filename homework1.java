@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class homework1 {
 	
-	public static void CreateTable(){																		//테이블을 생성하는 함수
+	public static void CreateTable(){						// 테이블을 만드는 함수												//테이블을 생성하는 함수
 		String jdbc_driver = "com.mysql.cj.jdbc.Driver";
 		String jdbc_url = "jdbc:mysql://localhost:3306/database_test?serverTimezone=UTC";
 		try {
