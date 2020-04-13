@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class homework1 {
 	
-	public static void CreateTable(){																		//Å×ÀÌºíÀ» »ı¼ºÇÏ´Â ÇÔ¼ö
+	public static void CreateTable(){																		//í…Œì´ë¸”ì„ ìƒì„±í•˜ëŠ” í•¨ìˆ˜
 		String jdbc_driver = "com.mysql.cj.jdbc.Driver";
 		String jdbc_url = "jdbc:mysql://localhost:3306/database_test?serverTimezone=UTC";
 		try {
@@ -19,15 +19,15 @@ public class homework1 {
 			
 			String cre = "CREATE TABLE if not exists addressbook (id INT not null , "
 					+ "name VARCHAR(45), tel  VARCHAR(45), email  VARCHAR(60), address  VARCHAR(60))";
-			// address Å×ÀÌºíÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é »ı¼º
+			// addressbook í…Œì´ë¸”ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ìƒì„±
 			st.execute(cre);
 			
-			String show = "SHOW TABLES like 'addressbook'"; // Å×ÀÌºíÀÌ »ı¼º µÇ¾ú´ÂÁö È®ÀÎ
+			String show = "SHOW TABLES like 'addressbook'"; // í…Œì´ë¸”ì´ ìƒì„± ë˜ì—ˆëŠ”ì§€ í™•ì¸
 			ResultSet rs1 = st.executeQuery(show);
 			if(rs1.next())
-				System.out.printf("Å×ÀÌºíÀÌ Á¸Àç ÇÕ´Ï´Ù.\n\n");
+				System.out.printf("í…Œì´ë¸”ì´ ì¡´ì¬ í•©ë‹ˆë‹¤.\n\n");
 			else
-				System.out.printf("Å×ÀÌºíÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.\n\n");
+				System.out.printf("í…Œì´ë¸”ì´ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\n");
 			
 			rs1.close();
 			st.close();
@@ -37,7 +37,7 @@ public class homework1 {
 		} 	
 	}
 	
-	public static void InsertData(){                                         										//Å×ÀÌºí¿¡ µ¥ÀÌÅÍ ÀÔ·ÂÇÏ´Â ÇÔ¼ö
+	public static void InsertData(){                                         										//í…Œì´ë¸”ì— ë°ì´í„° ì…ë ¥í•˜ëŠ” í•¨ìˆ˜
 		String jdbc_driver = "com.mysql.cj.jdbc.Driver";
 		String jdbc_url = "jdbc:mysql://localhost:3306/database_test?serverTimezone=UTC";
 		Scanner scan = new Scanner(System.in);
@@ -47,9 +47,9 @@ public class homework1 {
 			Connection con = DriverManager.getConnection(jdbc_url, "root", "kjun0513");
 			PreparedStatement st = con.prepareStatement("INSERT INTO database_test.addressbook VALUES(?, ?, ?, ?, ?) ");
 			
-			while(true){                                                                               // ¹è¿­¿¡ Å×ÀÌºíÀÇ id°ªµéÀ» ÀúÀåÇÑ´Ù.
+			while(true){                                                                               // ë°°ì—´ì— í…Œì´ë¸”ì˜ idê°’ë“¤ì„ ì €ì¥í•œë‹¤.
 				
-				String se = "SELECT id FROM database_test.addressbook";  // addressbookÀÇ Å×ÀÌºíÀÇ id °ª¸¸À» ¹Ş±âÀ§ÇÑ ¹®Àå
+				String se = "SELECT id FROM database_test.addressbook";  // addressbookì˜ í…Œì´ë¸”ì˜ id ê°’ë§Œì„ ë°›ê¸°ìœ„í•œ ë¬¸ì¥
 				ResultSet rs3 = st.executeQuery(se);
 				
 				int h [];
@@ -60,11 +60,11 @@ public class homework1 {
 					ab++;
 				}
 				rs3.close();
-				System.out.printf("µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏ½Ã°Ú½À´Ï±î? Yes¸é 1 NO¸é 0 \n");
+				System.out.printf("ë°ì´í„°ë¥¼ ì…ë ¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ? Yesë©´ 1 NOë©´ 0 \n");
 				int a = scan.nextInt();
 			
 				if(a == 1){
-					System.out.printf("ÀÔ·ÂÇÒ ¹øÈ£: " + "\n");
+					System.out.printf("ì…ë ¥í•  ë²ˆí˜¸: " + "\n");
 					int ID = scan.nextInt();
 					while(true){
 							--ab;
@@ -74,22 +74,22 @@ public class homework1 {
 							else if(ab ==0)
 								break;
 					}
-					if(ID == h[ab]){	                                                           // ÀÔ·Â¹ŞÀº ID°ªÀÌ Å×ÀÌºí¿¡ ÀÌ¹Ì ÀÖÀ¸¸é Á¾·áÇÑ´Ù.
-						System.out.printf("¾ÆÀÌµğ °ªÀÌ Áßº¹µË´Ï´Ù.\n" + "Ã³À½À¸·Î µ¹¾Æ°©´Ï´Ù \n\n");
-						ab = 0;                                             //ab °ªÀ» ÃÊ±âÈ­
+					if(ID == h[ab]){	                                                           // ì…ë ¥ë°›ì€ IDê°’ì´ í…Œì´ë¸”ì— ì´ë¯¸ ìˆìœ¼ë©´ ì¢…ë£Œí•œë‹¤.
+						System.out.printf("ì•„ì´ë”” ê°’ì´ ì¤‘ë³µë©ë‹ˆë‹¤.\n" + "ì²˜ìŒìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤ \n\n");
+						ab = 0;                                             //ab ê°’ì„ ì´ˆê¸°í™”
 						break;
 					}
 					
-					System.out.printf("ÀÔ·ÂÇÒ ÀÌ¸§: "+"\n");
+					System.out.printf("ì…ë ¥í•  ì´ë¦„: "+"\n");
 					String NAME = scan.next();			
 	
-					System.out.printf("ÀÔ·ÂÇÒ ÀüÈ­¹øÈ£: "+"\n");
+					System.out.printf("ì…ë ¥í•  ì „í™”ë²ˆí˜¸: "+"\n");
 					String TEL = scan.next();
 	
-					System.out.printf("ÀÔ·ÂÇÒ ÀÌ¸ŞÀÏ:  "+"\n");
+					System.out.printf("ì…ë ¥í•  ì´ë©”ì¼:  "+"\n");
 					String EMAIL = scan.next();
 				
-					System.out.printf("ÀÔ·ÂÇÒ ÁÖ¼Ò:  "+"\n");
+					System.out.printf("ì…ë ¥í•  ì£¼ì†Œ:  "+"\n");
 					String ADDRESS = scan.next();
 					
 					st.setInt(1, ID);
@@ -101,13 +101,13 @@ public class homework1 {
 					int cnt = st.executeUpdate();
 					
 					if(cnt != 0){
-						System.out.println("µ¥ÀÌÅÍ°¡ Ãß°¡ µÇ¾ú½À´Ï´Ù.\n");
+						System.out.println("ë°ì´í„°ê°€ ì¶”ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 						
 						String sq2 = "SELECT * FROM database_test.addressbook";
 						ResultSet rs4 = st.executeQuery(sq2);
 						
 						if(rs4.next()) {
-							System.out.printf("µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÕ´Ï´Ù.\n");
+							System.out.printf("ë°ì´í„°ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.\n");
 							do{
 								//@SuppressWarnings("unused")
 								String name = rs4.getString("name");
@@ -120,19 +120,19 @@ public class homework1 {
 							
 							rs4.close();
 						} else {
-							System.out.printf("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n");
+							System.out.printf("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 						}
 					
 					}
 					else
-						System.out.printf("µ¥ÀÌÅÍ°¡ Ãß°¡ µÇÁö ¾Ê¾Ò½À´Ï´Ù. \n");
+						System.out.printf("ë°ì´í„°ê°€ ì¶”ê°€ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. \n");
 				}
 				else if(a == 0){
-					System.out.printf("Á¾·á ÇÏ°Ú½À´Ï´Ù.\n\n");
+					System.out.printf("ì¢…ë£Œ í•˜ê² ìŠµë‹ˆë‹¤.\n\n");
 					break;
 				}
 				else
-					System.out.printf("Àß ¸ø ÀÔ·Â ÇÏ¼Ì½À´Ï´Ù. \n");				
+					System.out.printf("ì˜ ëª» ì…ë ¥ í•˜ì…¨ìŠµë‹ˆë‹¤. \n");				
 			}
 			
 			st.close();
@@ -142,7 +142,7 @@ public class homework1 {
 		} 	
 	}
 	
-	public static void UpdateData() {                                                                                  // Å×ÀÌºíÀ» ¼öÁ¤ÇÏ´Â ÇÔ¼ö
+	public static void UpdateData() {                                                                                  // í…Œì´ë¸”ì„ ìˆ˜ì •í•˜ëŠ” í•¨ìˆ˜
 		String jdbc_driver = "com.mysql.cj.jdbc.Driver";
 		String jdbc_url = "jdbc:mysql://localhost:3306/database_test?serverTimezone=UTC";
 		Scanner scan2 = new Scanner(System.in);
@@ -151,7 +151,7 @@ public class homework1 {
 			Class.forName(jdbc_driver).newInstance();
 			Connection con = DriverManager.getConnection(jdbc_url, "root", "kjun0513");
 			PreparedStatement st = con.prepareStatement("UPDATE database_test.addressbook SET email = "
-																							+ "replace(email, ?, ?) ");          //emailÇàÀÇ Æ¯Á¤ °ª¸¸ ¹Ù²Ù±â À§ÇÑ ¹®Àå
+																							+ "replace(email, ?, ?) ");          //emailí–‰ì˜ íŠ¹ì • ê°’ë§Œ ë°”ê¾¸ê¸° ìœ„í•œ ë¬¸ì¥
 			
 			
 			while(true){
@@ -159,7 +159,7 @@ public class homework1 {
 				ResultSet rst = st.executeQuery(sqld);
 				
 				if(rst.next()) {
-					System.out.printf("µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÕ´Ï´Ù. \n");
+					System.out.printf("ë°ì´í„°ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤. \n");
 					do{
 						//@SuppressWarnings("unused")
 						String name = rst.getString("name");
@@ -170,20 +170,20 @@ public class homework1 {
 						System.out.printf(" id: %d, Name: %s, tel: %s, email: %s, address: %s\n ", id, name, tel, email, address);
 					} while(rst.next());
 				} else {
-					System.out.printf("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n");
+					System.out.printf("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 				}
 				
 				rst.close();
 				
-				System.out.printf("µ¥ÀÌÅÍ¸¦ ¹Ù²Ù°Ú½À´Ï±î? Yes¸é 1 NO¸é 0 \n");
+				System.out.printf("ë°ì´í„°ë¥¼ ë°”ê¾¸ê² ìŠµë‹ˆê¹Œ? Yesë©´ 1 NOë©´ 0 \n");
 				int a = scan2.nextInt();
 			
 				if(a == 1){
 					
-					System.out.printf("¹Ù²Ù°í ½ÍÀº ÀÌ¸ŞÀÏÀÇ µµ¸ŞÀÎ ÀÔ·Â: \n");
+					System.out.printf("ë°”ê¾¸ê³  ì‹¶ì€ ì´ë©”ì¼ì˜ ë„ë©”ì¸ ì…ë ¥: \n");
 					String EMAIL = scan2.next();
 					
-					System.out.printf("¹Ù²Ü µµ¸ŞÀÎÀ» ÀÔ·ÂÇÏ¼¼¿ä: \n");
+					System.out.printf("ë°”ê¿€ ë„ë©”ì¸ì„ ì…ë ¥í•˜ì„¸ìš”: \n");
 					String CEMAIL = scan2.next();
 					
 					st.setString(1, EMAIL);
@@ -191,16 +191,16 @@ public class homework1 {
 					
 					int cnt2 = st.executeUpdate(); 
 					if(cnt2 != 0)
-						System.out.println("µ¥ÀÌÅÍ°¡ ¾÷µ¥ÀÌÆ® µÇ¾ú½À´Ï´Ù");	
+						System.out.println("ë°ì´í„°ê°€ ì—…ë°ì´íŠ¸ ë˜ì—ˆìŠµë‹ˆë‹¤");	
 					else
-						System.out.printf("µ¥ÀÌÅÍ°¡ ¾÷µ¥ÀÌÆ® µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+						System.out.printf("ë°ì´í„°ê°€ ì—…ë°ì´íŠ¸ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 				}
 				else if(a == 0){
-					System.out.printf("Á¾·áÇÏ°Ú½À´Ï´Ù.");
+					System.out.printf("ì¢…ë£Œí•˜ê² ìŠµë‹ˆë‹¤.");
 					break;
 				}	
 				else
-					System.out.printf("Àß ¸ø ÀÔ·Â ÇÏ¼Ì½À´Ï´Ù.");
+					System.out.printf("ì˜ ëª» ì…ë ¥ í•˜ì…¨ìŠµë‹ˆë‹¤.");
 				
 			}
 			
@@ -212,7 +212,7 @@ public class homework1 {
 		} 	
 	}
 
-	public static void DeleteData(){																				//µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÏ´Â ÇÔ¼ö
+	public static void DeleteData(){																				//ë°ì´í„°ë¥¼ ì‚­ì œí•˜ëŠ” í•¨ìˆ˜
 		String jdbc_driver = "com.mysql.cj.jdbc.Driver";
 		String jdbc_url = "jdbc:mysql://localhost:3306/database_test?serverTimezone=UTC";
 		Scanner scan4 = new Scanner(System.in);
@@ -233,29 +233,29 @@ public class homework1 {
 				a++;
 			}
 
-			System.out.printf("µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÏ°Ú½À´Ï±î?(ÇÏÀ§ 2°³°¡ »èÁ¦µË´Ï´Ù) Yes¸é 1 NO¸é 0 \n");
+			System.out.printf("ë°ì´í„°ë¥¼ ì‚­ì œí•˜ê² ìŠµë‹ˆê¹Œ?(í•˜ìœ„ 2ê°œê°€ ì‚­ì œë©ë‹ˆë‹¤) Yesë©´ 1 NOë©´ 0 \n");
 			int del = scan4.nextInt();
 			
 			if(del == 1){
-				for(int y = 0; y <2; y++){                            // ÇÏÀ§ 2°³ÀÇ µ¥ÀÌÅÍ¸¸ Áö¿ì´Â ¹İº¹¹®
+				for(int y = 0; y <2; y++){                            // í•˜ìœ„ 2ê°œì˜ ë°ì´í„°ë§Œ ì§€ìš°ëŠ” ë°˜ë³µë¬¸
 					--a;
 					String sqlt = "DELETE FROM database_test.addressbook WHERE id = ";
-					int result = st.executeUpdate(sqlt + i[a]); // À§ ¹®Àå¿¡ i[a]¿¡ ÀúÀåµÇ¾îÀÖ´Â °ª ¿¬°á
+					int result = st.executeUpdate(sqlt + i[a]); // ìœ„ ë¬¸ì¥ì— i[a]ì— ì €ì¥ë˜ì–´ìˆëŠ” ê°’ ì—°ê²°
 					
 					if(result == 0)
-						System.out.printf("»èÁ¦µÇÁö ¾Ê¾Ò½À´Ï´Ù.\n\n");
+						System.out.printf("ì‚­ì œë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.\n\n");
 					else
-						System.out.printf("ID¹øÈ£"+i[a]+"ÀÇ µ¥ÀÌÅÍ°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.\n\n");
+						System.out.printf("IDë²ˆí˜¸"+i[a]+"ì˜ ë°ì´í„°ê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.\n\n");
 				}
 			}
 			else
-				System.out.printf("Á¾·á ÇÏ°Ú½À´Ï´Ù.\n");
+				System.out.printf("ì¢…ë£Œ í•˜ê² ìŠµë‹ˆë‹¤.\n");
 		
 			String sq6 = "SELECT * FROM database_test.addressbook";
 			ResultSet rs6 = st.executeQuery(sq6);
 			
 			if(rs6.next()) {
-				System.out.printf("µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÕ´Ï´Ù.\n");
+				System.out.printf("ë°ì´í„°ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.\n");
 				do{
 					//@SuppressWarnings("unused")
 					String name = rs6.getString("name");
@@ -268,7 +268,7 @@ public class homework1 {
 				
 				rs6.close();
 			} else {
-				System.out.printf("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n");
+				System.out.printf("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 			}
 			
 			rs5.close();
@@ -291,7 +291,7 @@ public static void PrintTable(){
 		ResultSet rs = st.executeQuery(sql);
 		
 		if(rs.next()) {
-			System.out.printf("µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÕ´Ï´Ù.\n");
+			System.out.printf("ë°ì´í„°ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.\n");
 			do{
 				//@SuppressWarnings("unused")
 				String name = rs.getString("name");
@@ -302,7 +302,7 @@ public static void PrintTable(){
 				System.out.printf(" id: %d, Name: %s, tel: %s, email: %s, address: %s\n ", id, name, tel, email, address);
 			} while(rs.next());
 		} else {
-			System.out.printf("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n");
+			System.out.printf("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 		}
 		
 		
@@ -315,11 +315,11 @@ public static void PrintTable(){
 }
 	
 	
-	public static void main(String[] args) {																	//¸ŞÀÎÇÔ¼ö
+	public static void main(String[] args) {																	//ë©”ì¸í•¨ìˆ˜
 		// TODO Auto-generated method stub
 		String jdbc_driver = "com.mysql.cj.jdbc.Driver";
 		String jdbc_url = "jdbc:mysql://localhost:3306/database_test?serverTimezone=UTC";
-		Scanner scan1 = new Scanner(System.in);														//°ªÀ» ÀÔ·Â¹Ş±â À§ÇÑ Scanner
+		Scanner scan1 = new Scanner(System.in);														//ê°’ì„ ì…ë ¥ë°›ê¸° ìœ„í•œ Scanner
 		
 		try {
 			Class.forName(jdbc_driver).newInstance();
@@ -328,34 +328,34 @@ public static void PrintTable(){
 			Statement st = con.createStatement();
 			
 			while(true){
-				System.out.printf("¹«¾ùÀ» ÇÏ°Ú½À´Ï±î? \n"+ 
-										"1(Å×ÀÌºí »ı¼º), 2(µ¥ÀÌÅÍ ÀÔ·Â), 3(µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ®), 4(µ¥ÀÌÅÍ »èÁ¦), 5(Å×ÀÌºí Ãâ·Â), 6(Á¾·á) \n ");
+				System.out.printf("ë¬´ì—‡ì„ í•˜ê² ìŠµë‹ˆê¹Œ? \n"+ 
+										"1(í…Œì´ë¸” ìƒì„±), 2(ë°ì´í„° ì…ë ¥), 3(ë°ì´í„° ì—…ë°ì´íŠ¸), 4(ë°ì´í„° ì‚­ì œ), 5(í…Œì´ë¸” ì¶œë ¥), 6(ì¢…ë£Œ) \n ");
 				int num = 0;
 				num = scan1.nextInt();
 				
 				switch (num){
 				case 1:
-					CreateTable(); // Å×ÀÌºíÀ» »ı¼ºÇÏ´Â ÇÔ¼ö
+					CreateTable(); // í…Œì´ë¸”ì„ ìƒì„±í•˜ëŠ” í•¨ìˆ˜
 					num =0;
 					break;
 				case 2:
-					InsertData(); // µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏ´Â ÇÔ¼ö
+					InsertData(); // ë°ì´í„°ë¥¼ ì…ë ¥í•˜ëŠ” í•¨ìˆ˜
 					num =0;
 					break;
 				case 3:
-					UpdateData(); //µ¥ÀÌÅÍ¸¦ ¾÷µ¥ÀÌÆ® ÇÏ´Â ÇÔ¼ö
+					UpdateData(); //ë°ì´í„°ë¥¼ ì—…ë°ì´íŠ¸ í•˜ëŠ” í•¨ìˆ˜
 					break;
 				case 4:
-					DeleteData(); // µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÏ´Â ÇÔ¼ö(ÇÏÀ§ 2°³¸¸)
+					DeleteData(); // ë°ì´í„°ë¥¼ ì‚­ì œí•˜ëŠ” í•¨ìˆ˜(í•˜ìœ„ 2ê°œë§Œ)
 					break;
 				case 5:
-					PrintTable(); //µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö
+					PrintTable(); //ë°ì´í„°ë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 					break;
 				case 6:
-					System.out.printf("Á¾·á ÇÕ´Ï´Ù.\n");
+					System.out.printf("ì¢…ë£Œ í•©ë‹ˆë‹¤.\n");
 					break;
 				default:
-					System.out.printf("¼ıÀÚ¸¦ Àß ¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.\n");
+					System.out.printf("ìˆ«ìë¥¼ ì˜ ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.\n");
 				}
 				
 				if(num == 6)
