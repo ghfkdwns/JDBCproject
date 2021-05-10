@@ -9,6 +9,6 @@
             android:layout_height="wrap_content"
             android:text="test contxet"
             android:textSize="30sp"
-            android:gravity="left"
+            android:gravity="center"
             tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
